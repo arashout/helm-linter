@@ -60,7 +60,7 @@ fn main() {
 
     println!("Values: {:?}", values);
     println!("Template References: {:?}", &variables_chain);
-
+    // TODO: Collect validation errors and give a nice message if isempty
     for var_chain in variables_chain.iter() {
         if var_chain.get(0).unwrap() == "Values" {
             match validate_var_chain(&values, &var_chain[..]) {
