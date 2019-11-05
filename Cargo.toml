@@ -8,4 +8,5 @@ edition = "2018"
 
 [dependencies]
 gtmpl = {git="https://github.com/arashout/gtmpl-rust"}
-yaml-rust = "0.4.3"
+serde = "1.0"
+serde_yaml = "0.8"
