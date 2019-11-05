@@ -6,3 +6,5 @@ data:
   myvalue: "Hello World"
   drink: {{ .Values.favorite.drinks }}
   food: {{ .Values.favorite.food }}
+  lebron: {{ .Values.favorite.food.eat.lunch }}
+  kobe: {{ .Values.favorite }}
