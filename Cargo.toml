@@ -11,3 +11,4 @@ gtmpl = {git="https://github.com/arashout/gtmpl-rust"}
 serde = "1.0"
 serde_yaml = "0.8"
 clap = "*"
+colored = "1.9"

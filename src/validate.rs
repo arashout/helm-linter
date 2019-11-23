@@ -3,7 +3,7 @@ use serde_yaml::{Mapping, Value};
 #[derive(Debug)]
 pub enum ValidationErr {
     VariableChainNotFound(String),
-    NotEnoughValues(String),
+    NotFullyResolved(String),
     MissingKey(String),
     NotImplemented(String),
 }
@@ -26,7 +26,7 @@ fn in_mapping(
     current_var_chain: &[String],
 ) -> Result<String, ValidationErr> {
     if current_var_chain.len() == 0 {
-        return Err(ValidationErr::NotEnoughValues(format!(
+        return Err(ValidationErr::NotFullyResolved(format!(
             "Could not resolve to primitive! .{} resolves to:\t{:?}",
             &original_var_chain.join("."),
             m,
@@ -41,7 +41,9 @@ fn in_mapping(
                 if current_var_chain.len() > 1 {
                     return Err(ValidationErr::VariableChainNotFound(format!(
                         "Could not complete chain! Reached .{} in .{}",
-                        &current_var_chain.to_vec().drain(1..).collect::<Vec<String>>().join("."),
+                        &current_var_chain
+                            .first()
+                            .expect("Expected a String in non-empty vector"),
                         &original_var_chain.join(".")
                     )));
                 }
